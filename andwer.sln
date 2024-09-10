@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "andwer", "andwer\andwer.csproj", "{B86DD5E9-2D80-4428-BE7A-3B085B18C3AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastConsole", "FastConsole\FastConsole.csproj", "{8E5452DC-647B-46B3-9B79-55AED9FF6487}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B86DD5E9-2D80-4428-BE7A-3B085B18C3AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B86DD5E9-2D80-4428-BE7A-3B085B18C3AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B86DD5E9-2D80-4428-BE7A-3B085B18C3AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E5452DC-647B-46B3-9B79-55AED9FF6487}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E5452DC-647B-46B3-9B79-55AED9FF6487}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E5452DC-647B-46B3-9B79-55AED9FF6487}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E5452DC-647B-46B3-9B79-55AED9FF6487}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
