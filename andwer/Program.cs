@@ -1,16 +1,113 @@
 using System;
+using static System.Formats.Asn1.AsnWriter;
+using System.Diagnostics;
+using System.Text;
+Console.OutputEncoding = Encoding.UTF8;
 
-class AdventureGame
+Scene sceneToRender = MenuScene();
+while (sceneToRender != null)
 {
-    static void Main()
+    Console.Clear();
+    sceneToRender = sceneToRender();
+}
+
+static Scene MenuScene()
+{
+    int boxSize = 32;
+    string[] menuButtons = new string[]
     {
+    "Start",
+    "About",
+    "Setting",
+    "Exit"
+    };
+    int selectedButtonIndex = 1;
+    bool isRunning = true;
+    int LastRefreshTime = 0;
+    long lastRefrehTime = 0;
+    double refreshRate = 1.0 / 25.0;
+
+    Console.CursorVisible = false;
+    while (isRunning)
+    {
+        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(LastRefreshTime);
+        if (elapsedTime.TotalSeconds > refreshRate)
+        {
+            selectedButtonIndex = int.Clamp(selectedButtonIndex, 0, menuButtons.Length - 1);
+
+            Console.SetCursorPosition(0, 0);
+            PrintMessageNTimes("-", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "An adwenture game", "|", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "Version 0.1", "|", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "Have Fun and Good Luck", "|", boxSize); 
+            Console.WriteLine();
+            PrintMessageNTimes("-", boxSize);
+            Console.WriteLine();
+
+            for (int i = 0; i < menuButtons.Length; i++)
+            {
+                if (i == selectedButtonIndex)
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    PrintSurroundedMessage("*", menuButtons[i], "*", boxSize);
+                    Console.ResetColor();
+                }
+                else
+                {
+                    PrintSurroundedMessage("", menuButtons[i], "", boxSize);
+                }
+                Console.WriteLine();
+            }
+        }
+        while (Console.KeyAvailable)
+        {
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.W:
+                    selectedButtonIndex--;
+                    break;
+
+                case ConsoleKey.S:
+                    selectedButtonIndex++;
+                    break;
+
+                case ConsoleKey.Enter:
+                    switch (selectedButtonIndex)
+                    {
+                        case 0:
+                            return GameScene;
+
+                        case 1:
+                            return AboutScene;
+
+                        case 3:
+                            isRunning = false;
+                            Console.WriteLine("Exiting...");
+                            break;
+                    }
+                    break;
+
+            }
+        }
+    }
+    Console.WriteLine("Good bye");
+    return null;
+}
+
+
+static Scene GameScene()
+{
         bool isSecretEnding = false;
         ConsoleKey choice;
 
         while (true)
         {
             Console.Clear();
-            int selectedIndex = 0; // індекс для підсвічування вибору
+            int selectedIndex = 0; 
             string[] options = { "Старт", "Вихід" };
 
             while (true)
@@ -22,7 +119,7 @@ class AdventureGame
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим кольором
+                        Console.BackgroundColor = ConsoleColor.Green; 
                     }
                     else
                     {
@@ -34,7 +131,7 @@ class AdventureGame
 
                 ConsoleKey key = Console.ReadKey(true).Key;
 
-                // Обробка клавіш для переміщення
+               
                 if (key == ConsoleKey.UpArrow)
                 {
                     selectedIndex--;
@@ -45,11 +142,21 @@ class AdventureGame
                     selectedIndex++;
                     if (selectedIndex >= options.Length) selectedIndex = 0;
                 }
+                else if (key == ConsoleKey.W)
+                 {
+                selectedIndex--;
+                if (selectedIndex < 0) selectedIndex = options.Length - 1;
+                }
+                else if (key == ConsoleKey.S)
+                {
+                selectedIndex++;
+                if (selectedIndex >= options.Length) selectedIndex = 0;
+                }
                 else if (key == ConsoleKey.Enter)
                 {
                     if (selectedIndex == 0)
                     {
-                        // Почати гру
+                       
                         StartGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 1)
@@ -59,7 +166,7 @@ class AdventureGame
                     break;
                 }
             }
-        }
+        
     }
 
     static void StartGame(ref bool isSecretEnding)
@@ -76,7 +183,7 @@ class AdventureGame
             {
                 if (i == selectedIndex)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                    Console.ForegroundColor = ConsoleColor.Green; 
                 }
                 else
                 {
@@ -261,4 +368,114 @@ class AdventureGame
         Console.WriteLine("Натисніть будь-яку клавішу, щоб повернутися в меню...");
         Console.ReadKey(true);
     }
+    return null;
 }
+
+static Scene AboutScene()
+{
+    int boxSize = 32;
+    bool isRunning = true;
+    int LastRefreshTime = 0;
+    long lastRefrehTime = 0;
+    double refreshRate = 1.0 / 25.0;
+
+    Console.CursorVisible = false;
+    while (isRunning)
+    {
+        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(LastRefreshTime);
+        if (elapsedTime.TotalSeconds > refreshRate)
+        {
+
+
+            Console.SetCursorPosition(0, 0);
+            PrintMessageNTimes("-", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "Adwenture Game", "|", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "Game about danger forest trip", "|", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "by Nazx_xk and ...", "|", boxSize); // Допиши тут свій нік як того хто теж розробляв
+            static Scene AboutScene() 
+{
+    int boxSize = 32;
+    bool isRunning = true;
+    int LastRefreshTime = 0;
+    long lastRefrehTime = 0;
+    double refreshRate = 1.0 / 25.0;
+
+    Console.CursorVisible = false;
+    while (isRunning)
+    {
+        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(LastRefreshTime);
+        if (elapsedTime.TotalSeconds > refreshRate)
+        {
+
+
+            Console.SetCursorPosition(0, 0);
+            PrintMessageNTimes("-", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "Adwenture Game", "|", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "Game about danger forest trip", "|", boxSize);
+            Console.WriteLine();
+            PrintSurroundedMessage("|", "by Nazx_xk and ...", "|", boxSize); // Допиши тут свій нік як того хто теж розробляв
+                        Console.WriteLine();
+            PrintMessageNTimes("-", boxSize);
+            Console.WriteLine();
+            Console.WriteLine("Press Esc to return to menu");
+
+
+        }
+        while (Console.KeyAvailable)
+        {
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.Escape:
+                    return MenuScene;
+            }
+        }
+    }
+    return null;
+}
+            Console.WriteLine();
+            PrintMessageNTimes("-", boxSize);
+            Console.WriteLine();
+            Console.WriteLine("Press Esc to return");
+
+
+        }
+        while (Console.KeyAvailable)
+        {
+            ConsoleKeyInfo key = Console.ReadKey(true);
+            switch (key.Key)
+            {
+                case ConsoleKey.Escape:
+                    return MenuScene;
+            }
+        }
+    }
+    return null;
+}
+
+static void PrintMessageNTimes(string message, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        Console.Write(message);
+    }
+}
+
+static void PrintSurroundedMessage(string before, string message, string after, int boxSize)
+{
+    Console.Write(before);
+    boxSize = boxSize - (before.Length + after.Length);
+    int start = (int)((boxSize - message.Length) * 0.5);
+    PrintMessageNTimes(" ", start);
+    Console.Write(message);
+    PrintMessageNTimes(" ", boxSize - start - message.Length);
+
+    Console.Write(after);
+}
+
+delegate Scene Scene();
