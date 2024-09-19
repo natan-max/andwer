@@ -25,7 +25,7 @@ static Scene MenuScene()
     bool isRunning = true;
     int LastRefreshTime = 0;
     long lastRefrehTime = 0;
-    double refreshRate = 1.0 / 25.0;
+    double refreshRate = 20.0 / 20.0;
 
     Console.CursorVisible = false;
     while (isRunning)
@@ -40,9 +40,9 @@ static Scene MenuScene()
             Console.WriteLine();
             PrintSurroundedMessage("|", "An adwenture game", "|", boxSize);
             Console.WriteLine();
-            PrintSurroundedMessage("|", "Version 0.1", "|", boxSize);
+            PrintSurroundedMessage("|", "Version 0.2", "|", boxSize);
             Console.WriteLine();
-            PrintSurroundedMessage("|", "Have Fun and Good Luck", "|", boxSize); 
+            PrintSurroundedMessage("|", "Have Fun and Good Luck", "|", boxSize);
             Console.WriteLine();
             PrintMessageNTimes("-", boxSize);
             Console.WriteLine();
@@ -101,78 +101,78 @@ static Scene MenuScene()
 
 static Scene GameScene()
 {
-        bool isSecretEnding = false;
-        ConsoleKey choice;
+    bool isSecretEnding = false;
+    ConsoleKey choice;
+
+    while (true)
+    {
+        Console.Clear();
+        int selectedIndex = 0;
+        string[] options = { "Старт", "Вихід" };
 
         while (true)
         {
             Console.Clear();
-            int selectedIndex = 0; 
-            string[] options = { "Старт", "Вихід" };
+            Console.WriteLine("==== Головне Меню ====");
 
-            while (true)
+            for (int i = 0; i < options.Length; i++)
             {
-                Console.Clear();
-                Console.WriteLine("==== Головне Меню ====");
-
-                for (int i = 0; i < options.Length; i++)
+                if (i == selectedIndex)
                 {
-                    if (i == selectedIndex)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Green; 
-                    }
-                    else
-                    {
-                        Console.ResetColor();
-                    }
-
-                    Console.WriteLine($"{i + 1}. {options[i]}");
+                    Console.BackgroundColor = ConsoleColor.Green;
+                }
+                else
+                {
+                    Console.ResetColor();
                 }
 
-                ConsoleKey key = Console.ReadKey(true).Key;
+                Console.WriteLine($"{i + 1}. {options[i]}");
+            }
 
-               
-                if (key == ConsoleKey.UpArrow)
-                {
-                    selectedIndex--;
-                    if (selectedIndex < 0) selectedIndex = options.Length - 1;
-                }
-                else if (key == ConsoleKey.DownArrow)
-                {
-                    selectedIndex++;
-                    if (selectedIndex >= options.Length) selectedIndex = 0;
-                }
-                else if (key == ConsoleKey.W)
-                 {
+            ConsoleKey key = Console.ReadKey(true).Key;
+
+
+            if (key == ConsoleKey.UpArrow)
+            {
                 selectedIndex--;
                 if (selectedIndex < 0) selectedIndex = options.Length - 1;
-                }
-                else if (key == ConsoleKey.S)
-                {
+            }
+            else if (key == ConsoleKey.DownArrow)
+            {
                 selectedIndex++;
                 if (selectedIndex >= options.Length) selectedIndex = 0;
-                }
-                else if (key == ConsoleKey.Enter)
-                {
-                    if (selectedIndex == 0)
-                    {
-                       
-                        StartGame(ref isSecretEnding);
-                    }
-                    else if (selectedIndex == 1)
-                    {
-                        Environment.Exit(0);
-                    }
-                    break;
-                }
             }
-        
+            else if (key == ConsoleKey.W)
+            {
+                selectedIndex--;
+                if (selectedIndex < 0) selectedIndex = options.Length - 1;
+            }
+            else if (key == ConsoleKey.S)
+            {
+                selectedIndex++;
+                if (selectedIndex >= options.Length) selectedIndex = 0;
+            }
+            else if (key == ConsoleKey.Enter)
+            {
+                if (selectedIndex == 0)
+                {
+
+                    StartGame(ref isSecretEnding);
+                }
+                else if (selectedIndex == 1)
+                {
+                    Environment.Exit(0);
+                }
+                break;
+            }
+        }
+
     }
 
     static void StartGame(ref bool isSecretEnding)
     {
         int selectedIndex = 0;
-        string[] options = { "Піти через болото 1", "Піти через метро." };
+        string[] options = { "Піти через болото 1", "Піти через метро 2" };
 
         while (true)
         {
@@ -183,7 +183,7 @@ static Scene GameScene()
             {
                 if (i == selectedIndex)
                 {
-                    Console.ForegroundColor = ConsoleColor.Green; 
+                    Console.ForegroundColor = ConsoleColor.Green;
                 }
                 else
                 {
@@ -225,7 +225,7 @@ static Scene GameScene()
     static void SwampPath(ref bool isSecretEnding)
     {
         int selectedIndex = 0;
-        string[] options = { "Пройти через ліс", "Піти без паспорта 4", "Дуже тихо пройти через блок пост" };
+        string[] options = { "Пройти через ліс 3", "Піти без паспорта 4", "Дуже тихо пройти через блок пост5" };
 
         while (true)
         {
@@ -286,7 +286,7 @@ static Scene GameScene()
     static void FinalChoice(ref bool isSecretEnding)
     {
         int selectedIndex = 0;
-        string[] options = { "Попрощатись і повернутись додому", "Піти через річку 8", "Проігнорувати" };
+        string[] options = { "Попрощатись і повернутись додому 7", "Піти через річку 8", "Проігнорувати 9", "Продовжити"};
 
         while (true)
         {
@@ -339,11 +339,246 @@ static Scene GameScene()
                     Console.WriteLine("вам було весело але мама Вас вигнала з дому. Смертельна кінцівка.");
                     EndGame(ref isSecretEnding);
                 }
+                else if (selectedIndex == 3)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Continue?...");
+                    continuePath(ref isSecretEnding);
+                }
                 break;
             }
         }
     }
 
+    static void continuePath(ref bool isSecretEnding)
+    {
+        int selectedIndex = 0;
+        string[] options = { "Кричати", "Оглянути підвал", "Піти на гору і по пробувати вийти", "вийти через віконце" };
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Ви прокинулися, але є 1 нюанс,ви проснулися в підвалі. Ваші дії: ");
+
+            for (int i = 0; i < options.Length; i++)
+            {
+                if (i == selectedIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                }
+                else
+                {
+                    Console.ResetColor();
+                }
+
+                Console.WriteLine($"{i + 1}. {options[i]}");
+            }
+
+            ConsoleKey key = Console.ReadKey(true).Key;
+
+            if (key == ConsoleKey.UpArrow)
+            {
+                selectedIndex--;
+                if (selectedIndex < 0) selectedIndex = options.Length - 1;
+            }
+            else if (key == ConsoleKey.DownArrow)
+            {
+                selectedIndex++;
+                if (selectedIndex >= options.Length) selectedIndex = 0;
+            }
+            else if (key == ConsoleKey.Enter)
+            {
+                if (selectedIndex == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("сутність прийшло до вас і розрізала на 30 кусків. погана кінцівка.");
+                    EndGame(ref isSecretEnding);
+                }
+                else if (selectedIndex == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine("ви найшли тільки чорний вихід але він був заколочинений.");
+                    continuePath2(ref isSecretEnding);
+                }
+                else if (selectedIndex == 2)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Ви вийшли але за вами побігло сутність не людської подоби. ви померли. Погана кінцівка.");
+                    EndGame(ref isSecretEnding);
+                }
+                else if (selectedIndex == 3)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Ви вийшли, і вижили. Найкраща кінцівка.");
+                    EndGame(ref isSecretEnding);
+                }
+                break;
+            }
+        }
+    }
+
+    static void continuePath2(ref bool isSecretEnding)
+    {
+        int selectedIndex = 0;
+        string[] options = { "Піти туда.", "не іти туди", };
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("ви ще бродили ??? часу, і найшли пилу але ви замітили ще одну маленьку дверку . Ваші дії: ");
+
+            for (int i = 0; i < options.Length; i++)
+            {
+                if (i == selectedIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                }
+                else
+                {
+                    Console.ResetColor();
+                }
+
+                Console.WriteLine($"{i + 1}. {options[i]}");
+            }
+
+            ConsoleKey key = Console.ReadKey(true).Key;
+
+            if (key == ConsoleKey.UpArrow)
+            {
+                selectedIndex--;
+                if (selectedIndex < 0) selectedIndex = options.Length - 1;
+            }
+            else if (key == ConsoleKey.DownArrow)
+            {
+                selectedIndex++;
+                if (selectedIndex >= options.Length) selectedIndex = 0;
+            }
+            else if (key == ConsoleKey.Enter)
+            {
+                if (selectedIndex == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("ви відчули дуже різки сморід це були трупи і обригались і захснулися блювотино. тупа кінцівка.");
+                    EndGame(ref isSecretEnding);
+                }
+                else if (selectedIndex == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine("ви не пішли тай добре що не пішли.");
+                    continuePath3(ref isSecretEnding);
+                }
+                break;
+            }
+        }
+    }
+    static void continuePath3(ref bool isSecretEnding)
+    {
+        int selectedIndex = 0;
+        string[] options = { "Допомогти", "Тікати", };
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("ви виломали але це почуло сутність і вона почало істошно кричати вашим голосом голом друзів родичів ви почали сумніватися чи треба тікати чи рятувати родичів. Ваші дії: ");
+
+            for (int i = 0; i < options.Length; i++)
+            {
+                if (i == selectedIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                }
+                else
+                {
+                    Console.ResetColor();
+                }
+
+                Console.WriteLine($"{i + 1}. {options[i]}");
+            }
+
+            ConsoleKey key = Console.ReadKey(true).Key;
+
+            if (key == ConsoleKey.UpArrow)
+            {
+                selectedIndex--;
+                if (selectedIndex < 0) selectedIndex = options.Length - 1;
+            }
+            else if (key == ConsoleKey.DownArrow)
+            {
+                selectedIndex++;
+                if (selectedIndex >= options.Length) selectedIndex = 0;
+            }
+            else if (key == ConsoleKey.Enter)
+            {
+                if (selectedIndex == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Ви вибігли але вас схопила сутність далі вона вас кинула в казан і почала вас варити ви істошно кричали а сутність насолоджувалася потім на полусмерті воно почало здирати з вас шкіру і вас одночасно регенувати і ви відчували цю адську біль слава богу що ви померли від зупинки органів. жутка кінцівка.");
+                    EndGame(ref isSecretEnding);
+                }
+                else if (selectedIndex == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Ви згадали що всі родичи і друзі були не дома бо вони всі були далеко");
+                    FinalChoiceRUN(ref isSecretEnding);
+                }
+                break;
+            }
+        }
+    }
+    static void FinalChoiceRUN(ref bool isSecretEnding)
+    {
+        int selectedIndex = 0;
+        string[] options = { "Взяти", "Тікати", };
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Сутність почало за вам бігти але ви так були дуже ослабленні, ви заховалися, ви побачили старий джавелін з У-Р війні. Ваші дії: ");
+
+            for (int i = 0; i < options.Length; i++)
+            {
+                if (i == selectedIndex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                }
+                else
+                {
+                    Console.ResetColor();
+                }
+
+                Console.WriteLine($"{i + 1}. {options[i]}");
+            }
+
+            ConsoleKey key = Console.ReadKey(true).Key;
+
+            if (key == ConsoleKey.UpArrow)
+            {
+                selectedIndex--;
+                if (selectedIndex < 0) selectedIndex = options.Length - 1;
+            }
+            else if (key == ConsoleKey.DownArrow)
+            {
+                selectedIndex++;
+                if (selectedIndex >= options.Length) selectedIndex = 0;
+            }
+            else if (key == ConsoleKey.Enter)
+            {
+                if (selectedIndex == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("сутність вас наздогнали і відрубало всі кінцівки ви померли в сильних муках. погана кінцівка.");
+                    EndGame(ref isSecretEnding);
+                }
+                else if (selectedIndex == 1)
+                {
+                    Console.Clear();
+                    Console.WriteLine("ви підбігли до джавеліну але сутністю вас замітила але вона не побачила джавелін, ви напривли джавелін на неї але немогли бульнути із-за того що він старий ви рішили стрибнути в її рот воно вас зїло але через 1 хв ви зірвали в середині джавелін із собою ви в тяжкому стані але вижили. Супер Кінцівка.");
+                    EndGame(ref isSecretEnding);
+                }
+                break;
+            }
+        }
+    }
     static void EndGame(ref bool isSecretEnding)
     {
         Console.WriteLine("Для продовження натисніть будь-яку клавішу...");
@@ -377,31 +612,7 @@ static Scene AboutScene()
     bool isRunning = true;
     int LastRefreshTime = 0;
     long lastRefrehTime = 0;
-    double refreshRate = 1.0 / 25.0;
-
-    Console.CursorVisible = false;
-    while (isRunning)
-    {
-        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(LastRefreshTime);
-        if (elapsedTime.TotalSeconds > refreshRate)
-        {
-
-
-            Console.SetCursorPosition(0, 0);
-            PrintMessageNTimes("-", boxSize);
-            Console.WriteLine();
-            PrintSurroundedMessage("|", "Adwenture Game", "|", boxSize);
-            Console.WriteLine();
-            PrintSurroundedMessage("|", "Game about danger forest trip", "|", boxSize);
-            Console.WriteLine();
-            PrintSurroundedMessage("|", "by Nazx_xk and ...", "|", boxSize); // Допиши тут свій нік як того хто теж розробляв
-            static Scene AboutScene() 
-{
-    int boxSize = 32;
-    bool isRunning = true;
-    int LastRefreshTime = 0;
-    long lastRefrehTime = 0;
-    double refreshRate = 1.0 / 25.0;
+    double refreshRate = 20.0 / 20.0;
 
     Console.CursorVisible = false;
     while (isRunning)
@@ -419,25 +630,49 @@ static Scene AboutScene()
             PrintSurroundedMessage("|", "Game about danger forest trip", "|", boxSize);
             Console.WriteLine();
             PrintSurroundedMessage("|", "by Nazx_xk and Nathan", "|", boxSize); // Допиши тут свій нік як того хто теж розробляв
-                        Console.WriteLine();
-            PrintMessageNTimes("-", boxSize);
-            Console.WriteLine();
-            Console.WriteLine("Press Esc to return to menu");
-
-
-        }
-        while (Console.KeyAvailable)
-        {
-            ConsoleKeyInfo key = Console.ReadKey(true);
-            switch (key.Key)
+            static Scene AboutScene()
             {
-                case ConsoleKey.Escape:
-                    return MenuScene;
+                int boxSize = 32;
+                bool isRunning = true;
+                int LastRefreshTime = 0;
+                long lastRefrehTime = 0;
+                double refreshRate = 20.0 / 20.0;
+
+                Console.CursorVisible = false;
+                while (isRunning)
+                {
+                    TimeSpan elapsedTime = Stopwatch.GetElapsedTime(LastRefreshTime);
+                    if (elapsedTime.TotalSeconds > refreshRate)
+                    {
+
+
+                        Console.SetCursorPosition(0, 0);
+                        PrintMessageNTimes("-", boxSize);
+                        Console.WriteLine();
+                        PrintSurroundedMessage("|", "Adwenture Game", "|", boxSize);
+                        Console.WriteLine();
+                        PrintSurroundedMessage("|", "Game about danger forest trip", "|", boxSize);
+                        Console.WriteLine();
+                        PrintSurroundedMessage("|", "by Nazx_xk and Nathan", "|", boxSize); // Допиши тут свій нік як того хто теж розробляв
+                        Console.WriteLine();
+                        PrintMessageNTimes("-", boxSize);
+                        Console.WriteLine();
+                        Console.WriteLine("Press Esc to return to menu");
+
+
+                    }
+                    while (Console.KeyAvailable)
+                    {
+                        ConsoleKeyInfo key = Console.ReadKey(true);
+                        switch (key.Key)
+                        {
+                            case ConsoleKey.Escape:
+                                return MenuScene;
+                        }
+                    }
+                }
+                return null;
             }
-        }
-    }
-    return null;
-}
             Console.WriteLine();
             PrintMessageNTimes("-", boxSize);
             Console.WriteLine();
