@@ -418,7 +418,7 @@ static Scene AboutScene()
             Console.WriteLine();
             PrintSurroundedMessage("|", "Game about danger forest trip", "|", boxSize);
             Console.WriteLine();
-            PrintSurroundedMessage("|", "by Nazx_xk and ...", "|", boxSize); // Допиши тут свій нік як того хто теж розробляв
+            PrintSurroundedMessage("|", "by Nazx_xk and Nathan", "|", boxSize); // Допиши тут свій нік як того хто теж розробляв
                         Console.WriteLine();
             PrintMessageNTimes("-", boxSize);
             Console.WriteLine();
