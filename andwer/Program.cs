@@ -13,22 +13,14 @@ while (sceneToRender != null)
 
 static Scene MenuScene()
 {
-    int boxSize = 32;
-    string[] menuButtons = new string[]
-    {
-    "Start",
-    "About",
-    "Setting",
-    "Exit"
-    };
+   
     int selectedButtonIndex = 1;
-    bool isRunning = true;
     int LastRefreshTime = 0;
     long lastRefrehTime = 0;
     double refreshRate = 20.0 / 20.0;
 
     Console.CursorVisible = false;
-    while (isRunning)
+    while (true)
     {
         TimeSpan elapsedTime = Stopwatch.GetElapsedTime(LastRefreshTime);
         if (elapsedTime.TotalSeconds > refreshRate)
@@ -83,11 +75,6 @@ static Scene MenuScene()
 
                         case 1:
                             return AboutScene;
-
-                        case 3:
-                            isRunning = false;
-                            Console.WriteLine("Exiting...");
-                            break;
                     }
                     break;
 
