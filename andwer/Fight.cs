@@ -17,26 +17,41 @@ namespace andwer
 
             public bool IsAlive => Health > 0;
 
-            public void ReceiveDamage(double damage) { ... }
+            public void ReceiveDamage(double damage) 
+            { 
+                for(double i = Health; i > 0; i--)
+                {
+                    if (Health <= 0)
+                    {
+                      
+                    }
+                }
+            }
             public void DealDamage(Mob mob) { ... }
         }
 
         
         class Player : Mob
         {
-            public void 
+            public void Shield()
+            { 
+            
+            }
         }
 
         
         class Zombie : Mob
         {
-            public void Burn() { ... }
+
         }
 
         
-        class Creeper : Mob
+        class Enderman : Mob
         {
-            public void Explode() { ... }
+            public void Stealth()
+            {
+
+            }
         }
 
 
