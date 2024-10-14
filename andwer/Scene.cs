@@ -1,12 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace andwer
+﻿using FastConsole.Engine.Elements;
+
+public abstract class Scene
 {
-    abstract class Scene
+    public List<Element> Elements { get; } = new List<Element>();
+
+    public void OpenScene(Scene scene)
     {
-        public abstract void Render();
+        SceneManager.OpenScene(scene);
     }
+
+    public void CloseScene()
+    {
+        SceneManager.CloseScene(this);
+    }
+
+    public abstract void Update();
 }

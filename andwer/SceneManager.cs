@@ -1,25 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastConsole.Engine.Core;
+using FastConsole.Engine.Elements;
 
-namespace andwer
+class SceneManager
 {
-    class SceneManager
+    public static Scene ActiveScene => _loadedScenes.FirstOrDefault();
+
+    private static List<Scene> _loadedScenes = new List<Scene>();
+    private static List<Scene> _sceneToAdd = new List<Scene>();
+    private static List<Scene> _sceneToClose = new List<Scene>();
+    private static bool _exit;
+
+    public static void OpenScene(Scene scene)
     {
-        public static Scene ActiveScene { get; set; }
+        _sceneToAdd.Add(scene);
+    }
 
-        public static void Run()
+    public static void CloseScene(Scene scene)
+    {
+        _sceneToClose.Add(scene);
+    }
+
+    public static void Exit()
+    {
+        _exit = true;
+    }
+
+    public static void Run()
+    {
+        while (true)
         {
-            long lastRefrehTime = 0;
-            double refreshRate = 20.0 / 20.0;
-
-            Console.CursorVisible = false;
-            while (true)
+            if (Time.TryUpdate())
             {
-                TimeSpan elapsedTime = Stopwatch.GetElapsedTime(lastRefrehTime);
+                foreach (Scene scene in _sceneToAdd)
+                {
+                    _loadedScenes.Insert(0, scene);
+                }
+                _sceneToAdd.Clear();
+
+                if (ActiveScene == null || _exit)
+                    return;
+
+                ActiveScene.Update();
+                Element.UpdateAndRender(ActiveScene.Elements);
+
+                foreach (Scene scene in _sceneToClose)
+                {
+                    _loadedScenes.Remove(scene);
+                }
+                _sceneToClose.Clear();
             }
         }
     }

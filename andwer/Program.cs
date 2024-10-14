@@ -1,12 +1,8 @@
-using System;
-using static System.Formats.Asn1.AsnWriter;
-using System.Diagnostics;
-using System.Text;
-Console.OutputEncoding = Encoding.UTF8;
+﻿using FastConsole.Engine.Core;
 
-Scene sceneToRender = MenuScene();
-while (sceneToRender != null)
+class Program
 {
+<<<<<<< Updated upstream
     Console.Clear();
     sceneToRender = sceneToRender();
 }
@@ -29,12 +25,13 @@ static Scene MenuScene()
 
     Console.CursorVisible = false;
     while (isRunning)
+=======
+    public static void Main()
+>>>>>>> Stashed changes
     {
-        TimeSpan elapsedTime = Stopwatch.GetElapsedTime(LastRefreshTime);
-        if (elapsedTime.TotalSeconds > refreshRate)
-        {
-            selectedButtonIndex = int.Clamp(selectedButtonIndex, 0, menuButtons.Length - 1);
+        Windows.ForceUpgradeToAnsi();
 
+<<<<<<< Updated upstream
             Console.SetCursorPosition(0, 0);
             PrintMessageNTimes("-", boxSize);
             Console.WriteLine();
@@ -1027,3 +1024,9 @@ static void PrintSurroundedMessage(string before, string message, string after, 
 }                
  
 delegate Scene Scene();
+=======
+        SceneManager.OpenScene(new MenuScene());
+        SceneManager.Run();
+    }
+}
+>>>>>>> Stashed changes

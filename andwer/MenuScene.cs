@@ -1,95 +1,84 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastConsole.Engine.Core;
+using FastConsole.Engine.Elements;
+using System.Drawing;
 
-namespace andwer
+class MenuScene : Scene
 {
-    class MenuScene : Scene
+    private MenuButton[] _buttons;
+    private int _selectedIndex = 0;
+    private int _boxSize = 32;
+
+    public MenuScene()
     {
-
-        private string[] _menuButtons = new[]{
-    "Start",
-    "About",
-    "Setting",
-    "Exit"
-        };
-        private int _boxSize = 32;
-        private int _selectedButtonIndex = 1;
-        private int _LastRefreshTime = 0;
-
-        public MenuScene()
+        _buttons = new[]
         {
+            new MenuButton("Start", () =>
+            {
+                OpenScene(new GameScene());
+            }),
+            new MenuButton("About", () =>
+            {
+                OpenScene(new AboutScene());
+            }),
+            new MenuButton("Settings", () =>
+            {
+                OpenScene(new SettingsScene());
+            }),
+            new MenuButton("Exit", () =>
+            {
+                SceneManager.Exit();
+            }),
+        };
 
+        Elements.Add(Box.DefaultBox(new Point(0, 0), new Size(32, 4), new Text()
+        {
+            Alignment = Alignment.Center,
+            Value = "Adventure game\nversion: 0.1"
+        }));
+
+        FlexBox box = new FlexBox()
+        {
+            Size = new Size(32, _buttons.Length),
+            GrowDirection = GrowDirection.Vertical,
+            AlwaysRecalculate = true,
+            Position = new Point(0, 4)
+        };
+        box.Children.AddRange(_buttons);
+        foreach (MenuButton button in _buttons)
+        {
+            button.Size = new Size(32, 1);
+        }
+        Elements.Add(box);
+    }
+
+    public override void Update()
+    {
+        _selectedIndex = (_selectedIndex + _buttons.Length) % _buttons.Length;
+
+        for (int i = 0; i < _buttons.Length; i++)
+        {
+            _buttons[i].IsSelected = i == _selectedIndex;
         }
 
-        public override void Render()
+        while (Console.KeyAvailable)
         {
+            ConsoleKeyInfo key = Console.ReadKey(true);
 
-
-
-            long lastRefrehTime = 0;
-            double refreshRate = 20.0 / 20.0;
-
-
-            _selectedButtonIndex = int.Clamp(_selectedButtonIndex, 0, _menuButtons.Length - 1);
-
-            Console.SetCursorPosition(0, 0);
-            PrintMessageNTimes("-", boxSize);
-            Console.WriteLine();
-            PrintSurroundedMessage("|", "An adwenture game", "|", boxSize);
-            Console.WriteLine();
-            PrintSurroundedMessage("|", "Version 0.2", "|", boxSize);
-            Console.WriteLine();
-            PrintSurroundedMessage("|", "Have Fun and Good Luck", "|", boxSize);
-            Console.WriteLine();
-            PrintMessageNTimes("-", boxSize);
-            Console.WriteLine();
-
-            for (int i = 0; i < _menuButtons.Length; i++)
+            switch (key.Key)
             {
-                if (i == _selectedButtonIndex)
-                {
-                    Console.BackgroundColor = ConsoleColor.DarkGreen;
-                    PrintSurroundedMessage("*", _menuButtons[i], "*", boxSize);
-                    Console.ResetColor();
-                }
-                else
-                {
-                    PrintSurroundedMessage("", _menuButtons[i], "", boxSize);
-                }
-                Console.WriteLine();
+                case ConsoleKey.UpArrow:
+                    _selectedIndex--;
+                    break;
+
+                case ConsoleKey.DownArrow:
+                    _selectedIndex++;
+                    break;
+
+                case ConsoleKey.Enter:
+                    _buttons[_selectedIndex].PerformAction();
+                    break;
             }
-
-            while (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo key = Console.ReadKey(true);
-                switch (key.Key)
-                {
-                    case ConsoleKey.W:
-                        _selectedButtonIndex--;
-                        break;
-
-                    case ConsoleKey.S:
-                        _selectedButtonIndex++;
-                        break;
-
-                    case ConsoleKey.Enter:
-                        switch (_selectedButtonIndex)
-                        {
-                            case 0:
-                                return GameScene;
-
-                            case 1:
-                                return AboutScene;
-                        }
-                        break;
-
-                }
-            }
-
-            Console.WriteLine("Good bye");
-            return null;
         }
     }
+
+}
