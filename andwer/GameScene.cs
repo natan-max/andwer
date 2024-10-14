@@ -18,12 +18,12 @@ public class GameScene : Scene
         static void StartGame(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "Піти через болото ", "Піти через метро " };
+            string[] options = { "Пiти через болото ", "Пiти через метро " };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Головний герой Скенсик ішов з друзями: Марко Севастіан Вілям 1 Адольф і вам треба іти до площятки но ви не хотіли іти через головну дорогу яка пішком іти 2.5 годин є коротший шлях. от ви дойши до того короткого шляху вибери доріжку:");
+                Console.WriteLine("Головний герой Скенсик йшов з друзями: Марко Севастiан Вiлям 1 Адольф i вам треба йти до площятки но ви не хотiли йти через головну дорогу яка пішком iти 2.5 годин є коротший шлях. от ви дойши до того короткого шляху вибери дорiжку:");
 
                 for (int i = 0; i < options.Length; i++)
                 {
@@ -60,7 +60,7 @@ public class GameScene : Scene
                     else if (selectedIndex == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("Ви пішли через метро вас замітив Охоронник і вас відправили у відділення. Найгірша кінцівка.");
+                        Console.WriteLine("Ви пiшли через метро вас замiтив Охоронник i вас вiдправили у вiддiлення. Найгiрша кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     break;
@@ -71,18 +71,18 @@ public class GameScene : Scene
         static void SwampPath(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "Пройти через ліс ", "Піти без паспорта ", "Дуже тихо пройти через блок пост" };
+            string[] options = { "Пройти через лiс ", "Пiти без паспорта ", "Дуже тихо пройти через блок пост" };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Ви пройшли через болото і трохи забруднилися, але нічого страшного.коли пройшли болото вам зустрівся Попереду блок пост. Твої дії:");
+                Console.WriteLine("Ви пройшли через болото i трохи забруднилися, але нiчого страшного.коли пройшли болото вам зустрiвся Попереду блок пост. Твої дiї:");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green;
                     }
                     else
                     {
@@ -109,19 +109,19 @@ public class GameScene : Scene
                     if (selectedIndex == 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("Вас замітили і розстріляли. Погана кінцівка.");
+                        Console.WriteLine("Вас замiтили i розстрiляли. Погана кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("Слава Богу, знайомий Вільяма допоміг вам. Ви пройшли 8");
+                        Console.WriteLine("Слава Богу, знайомий Вiльяма допомiг вам. Ви пройшли 8");
                         FinalChoice(ref isSecretEnding);
                     }
                     else if (selectedIndex == 2)
                     {
                         Console.Clear();
-                        Console.WriteLine("Ви пройшли але Марко пукнув, і вас замітили. Погана кінцівка.");
+                        Console.WriteLine("Ви пройшли але Марко пукнув, i вас замiтили. Погана кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     break;
@@ -132,18 +132,18 @@ public class GameScene : Scene
         static void FinalChoice(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "Попрощатись і повернутись додому ", "Піти через річку ", "Проігнорувати " };
+            string[] options = { "Попрощатись i повернутись додому ", "Пiти через рiчку ", "Проiгнорувати " };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("ви пройшли блок пост, Ви майже дійшли до площятки, але вам дзвонить мама і каже 'ЩОБ ЗА 4 ХВИЛИН БУВ ДОМА Я ДУЖЕ ЗЛА'. Що робитимеш:");
+                Console.WriteLine("ви пройшли блок пост, Ви майже дiйшли до площятки, але вам дзвонить мама i каже 'ЩОБ ЗА 4 ХВИЛИН БУВ ДОМА Я ДУЖЕ ЗЛА'. Що робитимеш:");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green;
                     }
                     else
                     {
@@ -170,19 +170,19 @@ public class GameScene : Scene
                     if (selectedIndex == 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("Вас підкалували за те, що ви мамин синок. Нейтральна кінцівка.");
+                        Console.WriteLine("Вас пiдкалували за те, що ви мамин синок. Нейтральна кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("Ви дойшли додому але запізнилися на 10 хвилин. Мама сварить вас, але прощає. хороша кінцівка.");
+                        Console.WriteLine("Ви дойшли додому але запiзнилися на 10 хвилин. Мама сварить вас, але прощає. хороша кiнцiвка.");
                         FinalChoice2(ref isSecretEnding);
                     }
                     else if (selectedIndex == 2)
                     {
                         Console.Clear();
-                        Console.WriteLine("вам було весело але мама Вас вигнала з дому. Смертельна кінцівка.");
+                        Console.WriteLine("вам було весело але мама Вас вигнала з дому. Смертельна кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     break;
@@ -193,16 +193,16 @@ public class GameScene : Scene
         static void FinalChoice2(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "Продовжити", "закінчити" };
+            string[] options = { "Продовжити", "закiнчити" };
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Ви дойшли додому але запізнилися на 10 хвилин. Мама сварить вас, але прощає. хороша кінцівка.");
+                Console.WriteLine("Ви дойшли додому але запiзнилися на 10 хвилин. Мама сварить вас, але прощає. хороша кiнцiвка.");
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green;
                     }
                     else
                     {
@@ -247,18 +247,18 @@ public class GameScene : Scene
         static void continuePath(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "Кричати", "Оглянути підвал", "Піти на гору і по про8увати вийти", "вийти через віконце" };
+            string[] options = { "Кричати", "Оглянути пiдвал", "Пiти на гору i по про8увати вийти", "вийти через вiконце" };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Ви прокинулися, але є 1 нюанс,ви проснулися в підвалі. Ваші дії: ");
+                Console.WriteLine("Ви прокинулися, але є 1 нюанс,ви проснулися в пiдвалi. Ваші дiї: ");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green;
                     }
                     else
                     {
@@ -285,26 +285,26 @@ public class GameScene : Scene
                     if (selectedIndex == 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("сутність прийшло до вас і розрізала на 30 кусків. погана кінцівка.");
+                        Console.WriteLine("сутнiсть прийшло до вас i розрізала на 30 кускiв. погана кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви найшли тільки чорний вихід але він був заколочинений.");
+                        Console.WriteLine("ви найшли тiльки чорний вихiд але вiн був заколочинений.");
                         continuePath2(ref isSecretEnding);
 
                     }
                     else if (selectedIndex == 2)
                     {
                         Console.Clear();
-                        Console.WriteLine("Ви вийшли але за вами побігло сутність не людської подоби. ви померли. Погана кінцівка.");
+                        Console.WriteLine("Ви вийшли але за вами побiгло сутнiсть не людської подоби. ви померли. Погана кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 3)
                     {
                         Console.Clear();
-                        Console.WriteLine("Ви вийшли, і вижили. Найкраща кінцівка.");
+                        Console.WriteLine("Ви вийшли, i вижили. Найкраща кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     break;
@@ -315,18 +315,18 @@ public class GameScene : Scene
         static void continuePath2(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "взяти пилу", "взяти болгарку", "взяти мініган", "піти до ЧВ" };
+            string[] options = { "взяти пилу", "взяти болгарку", "взяти мiнiган", "пiти до ЧВ" };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("ви ще бродили ??? часу, і найшли пилу, болгарку, мініган . Ваші дії: ");
+                Console.WriteLine("ви ще бродили ??? часу, i найшли пилу, болгарку, мiнiган . Вашi дiї: ");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green; 
                     }
                     else
                     {
@@ -365,13 +365,13 @@ public class GameScene : Scene
                     else if (selectedIndex == 2)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви вибігли на сутність а у мініку не було патронів і вас з'їла сутність. розумно-тупа кінцівка. ");
+                        Console.WriteLine("ви вибiгли на сутнiсть а у мiнiку не було патронiв i вас з'їла сутність. розумно-тупа кiнцiвка. ");
                         EndGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 3)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви пішли до ЧВ але там була сутність ви програли. погана кінцівка");
+                        Console.WriteLine("ви пiшли до ЧВ але там була сутнiсть ви програли. погана кiнцiвка");
                         EndGame(ref isSecretEnding);
                     }
                     break;
@@ -381,18 +381,18 @@ public class GameScene : Scene
         static void continuePaths1(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "взяти 8олгарку", "взяти мініган", "піти до ЧВ" };
+            string[] options = { "взяти 8олгарку", "взяти мiнiган", "пiти до ЧВ" };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("залишилися болгарка, мініган . Ваші дії: ");
+                Console.WriteLine("залишилися болгарка, мiнiган . Вашi дiї: ");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green; 
                     }
                     else
                     {
@@ -441,18 +441,18 @@ public class GameScene : Scene
         static void continuePathsvse(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "взяти мініган", "піти до ЧВ" };
+            string[] options = { "взяти мiнiган", "пiти до ЧВ" };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("залишився мініган . Ваші дії: ");
+                Console.WriteLine("залишився мiнiган . Вашi дiї: ");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green; 
                     }
                     else
                     {
@@ -479,13 +479,13 @@ public class GameScene : Scene
                     if (selectedIndex == 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви вибігли на сутність а у мініку не було патронів і вас з'їла сутність. розумно-тупа кінцівка.");
+                        Console.WriteLine("ви вибiгли на сутнiсть а у мiнiку не було патронiв i вас з'їла сутнiсть. розумно-тупа кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви просто пішли з пилою і болгаркою");
+                        Console.WriteLine("ви просто пiшли з пилою i болгаркою");
                         continuePath6(ref isSecretEnding);
                     }
                     break;
@@ -495,18 +495,18 @@ public class GameScene : Scene
         static void continuePath6(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "використати пилу", "використати болгарку", "вийти через віконце" };
+            string[] options = { "використати пилу", "використати болгарку", "вийти через вiконце" };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("ви вернулися до заколочиного чорного виходу. що ви використаєте. Ваші дії: ");
+                Console.WriteLine("ви вернулися до заколочиного чорного виходу. що ви використаєте. Вашi дiї: ");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green; 
                     }
                     else
                     {
@@ -533,19 +533,19 @@ public class GameScene : Scene
                     if (selectedIndex == 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("Ви використали пилу і це було безшумно");
+                        Console.WriteLine("Ви використали пилу i це було безшумно");
                         PlayPuzzle(ref isSecretEnding);
                     }
                     else if (selectedIndex == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("Ви використали болгарку і це було шумно сутність вас замітило і з'їло. Погана Кінцівка");
+                        Console.WriteLine("Ви використали болгарку i це було шумно сутнiсть вас замiтило i з'їло. Погана Кiнцiвка");
                         EndGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 2)
                     {
                         Console.Clear();
-                        Console.WriteLine("Ви вийшли, і вижили. Найкраща кінцівка.");
+                        Console.WriteLine("Ви вийшли, i вижили. Найкраща кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     break;
@@ -555,17 +555,15 @@ public class GameScene : Scene
         static void PlayPuzzle(ref bool isSecretEnding)
         {
             Console.Clear();
-            Console.WriteLine("Ви спиляли чорний вихід і побачили древній механізм із загадкою. Вам потрібно вибрати правильний символ для активації.");
+            Console.WriteLine("Ви спиляли чорний вихiд i побачили древнiй механізм iз загадкою. Вам потрiбно вибрати правильний символ для активацiї.");
 
-            // Опції для головоломки
-            string[] options = { "вода", "вогонь", "квадробер", "світодіод" };
+            string[] options = { "вода", "вогонь", "квадробер", "свiтодiод" };
             int selectedOption = 0;
 
             while (true)
-            {
-                // Виводимо варіанти з підсвічуванням обраного
+            { 
                 Console.Clear();
-                Console.WriteLine("Ви спиляли чорний вихід і побачили древній механізм із загадкою. Вам потрібно вибрати правильний символ для активації.ось підказка:\"Я завжди рухаюся, але не маю ніг.\r\nЯ не дихаю, але можу жити.\r\nМоє життя коротке, але я можу стати нескінченним,\r\nЯкщо мене годувати. Хто я?\"");
+                Console.WriteLine("Ви спиляли чорний вихiд i побачили древнiй механiзм iз загадкою. Вам потрiбно вибрати правильний символ для активацiї.ось пiдказка:\"Я завжди рухаюся, але не маю нiг.\r\nЯ не дихаю, але можу жити.\r\nМоє життя коротке, але я можу стати нескiнченним,\r\nЯкщо мене годувати. Хто я?\"");
 
                 for (int i = 0; i < options.Length; i++)
                 {
@@ -581,13 +579,10 @@ public class GameScene : Scene
                     }
                 }
 
-                // Обробка натискання клавіш
                 ConsoleKey key = Console.ReadKey(true).Key;
 
                 if (key == ConsoleKey.UpArrow)
                 {
-                    // Переміщаємось вгору по списку
-                    selectedOption--;
                     if (selectedOption < 0)
                     {
                         selectedOption = options.Length - 1;
@@ -595,7 +590,6 @@ public class GameScene : Scene
                 }
                 else if (key == ConsoleKey.DownArrow)
                 {
-                    // Переміщаємось вниз по списку
                     selectedOption++;
                     if (selectedOption >= options.Length)
                     {
@@ -604,7 +598,6 @@ public class GameScene : Scene
                 }
                 else if (key == ConsoleKey.Enter)
                 {
-                    // Виконуємо дію на основі вибраного варіанту
                     Console.Clear();
                     switch (selectedOption)
                     {
@@ -613,15 +606,15 @@ public class GameScene : Scene
                             EndGame(ref isSecretEnding);
                             break;
                         case 1:
-                            Console.WriteLine("Вода спокійно протекла, і механізм відкрився.");
+                            Console.WriteLine("Вода спокiйно протекла, i механiзм вiдкрився.");
                             FinalChoice1(ref isSecretEnding);
                             break;
                         case 2:
-                            Console.WriteLine("На вас вибігли квадробери і вас перетворили в квадробера! Найгірша кінцівка.");
+                            Console.WriteLine("На вас вибiгли квадробери i вас перетворили в квадробера! Найгiрша кiнцiвка.");
                             EndGame(ref isSecretEnding);
                             break;
                         case 3:
-                            Console.WriteLine("Вітер здув пастку з такою силою, що вас здуло і придавило уламками! Погана кінцівка.");
+                            Console.WriteLine("Вiтер здув пастку з такою силою, що вас здуло i придавило уламками! Погана кiнцiвка.");
                             EndGame(ref isSecretEnding);
                             break;
                     }
@@ -633,18 +626,18 @@ public class GameScene : Scene
         static void FinalChoice1(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "піти в нього", "піти додому", };
+            string[] options = { "пiти в нього", "пiти додому", };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("ви вийли і побачили старий дім. Ваші дії: ");
+                Console.WriteLine("ви вийли i побачили старий дiм. Вашi дiї: ");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green; 
                     }
                     else
                     {
@@ -671,13 +664,13 @@ public class GameScene : Scene
                     if (selectedIndex == 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви пішли в той дім і замітили що там був танк Panzerkampfwagen VI Ausf B Tiger II з повнрю боєвою готовністю з екіпажем магічних скелетів німців під час WWII.");
+                        Console.WriteLine("ви пiшли в той дiм i замiтили що там був танк Panzerkampfwagen VI Ausf B Tiger II з повнрю боєвою готовнiстю з екiпажем магiчних скелетiв нiмцiв пiд час WWII.");
                         FinalChoice4(ref isSecretEnding);
                     }
                     else if (selectedIndex == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви пішли додому і у вас все добре...чи нє?. сумнівна Кінцівка.");
+                        Console.WriteLine("ви пiшли додому i у вас все добре...чи нє?. сумнiвна Кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     break;
@@ -687,18 +680,18 @@ public class GameScene : Scene
         static void FinalChoice4(ref bool isSecretEnding)
         {
             int selectedIndex = 0;
-            string[] options = { "нажати червону кнопку і стрильнути", "ДАВИТИ І СТРІЛЯТИ ПО ЛИЦЮ", };
+            string[] options = { "нажати червону кнопку i стрильнути", "ДАВИТИ I СТРІЛЯТИ ПО ЛИЦЮ", };
 
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("ви почали їхати на сторону тої хати і тут вибігає сутність. Ваші дії: ");
+                Console.WriteLine("ви почали їхати на сторону тої хати i тут вибiгає сутнiсть. Вашi дiї: ");
 
                 for (int i = 0; i < options.Length; i++)
                 {
                     if (i == selectedIndex)
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; // Підсвічення зеленим
+                        Console.ForegroundColor = ConsoleColor.Green; 
                     }
                     else
                     {
@@ -725,13 +718,13 @@ public class GameScene : Scene
                     if (selectedIndex == 0)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви зірвали сутність в атоми але вас зачепило і відірвало руку. ви вижили. хороша кінцівка.");
+                        Console.WriteLine("ви зiрвали сутнiсть в атоми але вас зачепило i відірвало руку. ви вижили. хороша кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     else if (selectedIndex == 1)
                     {
                         Console.Clear();
-                        Console.WriteLine("ви вбили сутність без постраждань. сумнівна Кінцівка.");
+                        Console.WriteLine("ви вбили сутнiсть без постраждань. сумнiвна Кiнцiвка.");
                         EndGame(ref isSecretEnding);
                     }
                     break;
@@ -740,16 +733,16 @@ public class GameScene : Scene
         }
         static void EndGame(ref bool isSecretEnding)
         {
-            Console.WriteLine("Для продовження натисніть будь-яку клавішу...");
+            Console.WriteLine("Для продовження натиснiть будь-яку клавiшу...");
             Console.ReadKey(true);
 
             Console.Clear();
-            Console.WriteLine("Введіть код для секретної кінцівки або натисніть Enter для завершення:");
+            Console.WriteLine("Введiть код для секретної кiнцiвки або натиснiть Enter для завершення:");
             string input = Console.ReadLine();
 
             if (input == "1488")
             {
-                Console.WriteLine("Ви знайшли секретну кінцівку!");
+                Console.WriteLine("Ви знайшли секретну кiнцiвку!");
                 isSecretEnding = true;
                 Console.ReadKey();
             }
@@ -758,8 +751,8 @@ public class GameScene : Scene
                 isSecretEnding = false;
             }
 
-            Console.WriteLine("Гру закінчено.");
-            Console.WriteLine("Натисніть будь-яку клавішу, щоб повернутися в меню...");
+            Console.WriteLine("Гру закiнчено.");
+            Console.WriteLine("Натиснiть будь-яку клавiшу, щоб повернутися в меню...");
             Console.ReadKey(true);
         }
 
