@@ -1,9 +1,7 @@
-using System.Text;
-
 
 public class GameScene : Scene
 {
-    
+
 
     public GameScene()
     {
@@ -15,7 +13,7 @@ public class GameScene : Scene
             bool isSecretEnding = false;
             StartGame(ref isSecretEnding);
 
-            
+
         }
         static void StartGame(ref bool isSecretEnding)
         {
@@ -451,13 +449,13 @@ public class GameScene : Scene
             Console.WriteLine("Натиснiть будь-яку клавiшу, щоб повернутися в меню...");
             Console.ReadKey(true);
         }
-        
+
 
     }
 
 
     public override void Update()
     {
-        
+
     }
 }
